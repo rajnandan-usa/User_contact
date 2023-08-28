@@ -4,7 +4,7 @@ document.getElementById('registration-form').addEventListener('submit', function
    
     clearErrors();
 
-    // Perform validation
+    // validation
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
@@ -50,7 +50,7 @@ document.getElementById('registration-form').addEventListener('submit', function
     })
     .then(response => response.json())
     .then(data => {
-        // Handle response from server
+        // Handle response
         console.log(data);
     })
     .catch(error => {
