@@ -1,5 +1,17 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    //database connection
+    $db_host = 'localhost';
+    $db_user = 'root';
+    $db_pass = '';
+    $db_name = 'user_registration';
+
+    $conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
     $name = $_POST['name'];
     $email = $_POST['email'];
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
@@ -25,12 +37,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($captcha_result->success) {
         // Save user data to database
-        // Handle file upload, database insertion, etc.
-        // Return a JSON response indicating success or failure
-        $response = array('status' => 'success', 'message' => 'User registered successfully');
+        $sql = "INSERT INTO users (name, email, password) VALUES ('$name', '$email', '$password')";
+        if ($conn->query($sql) === TRUE) {
+            $response = array('status' => 'success', 'message' => 'User registered successfully');
+        } else {
+            $response = array('status' => 'error', 'message' => 'Error saving user data');
+        }
     } else {
         $response = array('status' => 'error', 'message' => 'Captcha validation failed');
     }
+
+    // Close the database connection
+    $conn->close();
 
     echo json_encode($response);
 }
