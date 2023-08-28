@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $captcha_response = $_POST['g-recaptcha-response'];
     $url = 'https://www.google.com/recaptcha/api/siteverify';
     $data = array(
-        'secret' => '6LeVq94nAAAAAA2e-wykLWxJdqrIYXlguBkVn9h5',
+        'secret' => '6Lc6L98nAAAAABH4eOtiAyf0TxAdoCg819pka2vB',
         'response' => $captcha_response
     );
     $options = array(
