@@ -7,12 +7,24 @@
 </head>
 <body>
     <form id="registration-form" enctype="multipart/form-data">
-        <input type="text" name="name" placeholder="Name" required>
-        <input type="email" name="email" placeholder="Email" required>
-        <input type="password" name="password" placeholder="Password" required>
-        <input type="password" name="confirm_password" placeholder="Confirm Password" required>
-        <input type="file" name="user_image" accept="image/png" required>
+        <input type="text" id="name" name="name" placeholder="Name" required>
+        <div id="name-error"></div>
+        
+        <input type="email" id="email" name="email" placeholder="Email" required>
+        <div id="email-error"></div>
+        
+        <input type="password" id="password" name="password" placeholder="Password" required>
+        <div id="password-error"></div>
+        
+        <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm Password" required>
+        <div id="confirm_password-error"></div>
+        
+        <input type="file" id="user_image" name="user_image" accept="image/png" required>
+        <div id="user_image-error"></div>
+        
         <div class="g-recaptcha" data-sitekey="YOUR_RECAPTCHA_SITE_KEY"></div>
+        <div id="captcha-error"></div>
+        
         <button type="submit">Register</button>
     </form>
 </body>
