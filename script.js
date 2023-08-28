@@ -1,7 +1,7 @@
 document.getElementById('registration-form').addEventListener('submit', function(event) {
     event.preventDefault();
     
-    // Clear previous error messages
+   
     clearErrors();
 
     // Perform validation
