@@ -1,6 +1,6 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    //database connection
+    // Establish database connection
     $db_host = 'localhost';
     $db_user = 'root';
     $db_pass = '';
@@ -39,7 +39,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Save user data to database
         $sql = "INSERT INTO users (name, email, password) VALUES ('$name', '$email', '$password')";
         if ($conn->query($sql) === TRUE) {
-            $response = array('status' => 'success', 'message' => 'User registered successfully');
+            // Close the database connection
+            $conn->close();
+
+            // Redirect to user list page
+            header("Location: user_list.php");
+            exit();
         } else {
             $response = array('status' => 'error', 'message' => 'Error saving user data');
         }
