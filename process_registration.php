@@ -1,6 +1,6 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Establish database connection
+    //connection 
     $db_host = 'localhost';
     $db_user = 'root';
     $db_pass = '';
@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
     // Process and validate other fields
 
-    // Validate Google Captcha
+    //Google Captcha
     $captcha_response = $_POST['g-recaptcha-response'];
     $url = 'https://www.google.com/recaptcha/api/siteverify';
     $data = array(
@@ -36,13 +36,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $captcha_result = json_decode($result);
 
     if ($captcha_result->success) {
-        // Save user data to database
+        // Save data to database
         $sql = "INSERT INTO users (name, email, password) VALUES ('$name', '$email', '$password')";
         if ($conn->query($sql) === TRUE) {
-            // Close the database connection
+            // Close connection
             $conn->close();
 
-            // Redirect to user list page
+            // Redirect to list page
             header("Location: user_list.php");
             exit();
         } else {
@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $response = array('status' => 'error', 'message' => 'Captcha validation failed');
     }
 
-    // Close the database connection
+    // Close connection
     $conn->close();
 
     echo json_encode($response);
