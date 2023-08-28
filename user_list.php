@@ -26,7 +26,9 @@
     if ($result->num_rows > 0) {
         echo "<ul>";
         while ($row = $result->fetch_assoc()) {
-            echo "<li><a href='edit_user.php?id={$row['id']}'>{$row['name']}</a> ({$row['email']})</li>";
+            echo "<li>{$row['name']} ({$row['email']})";
+            echo " <a href='edit_user.php?id={$row['id']}'>Edit</a>";
+            echo " <a href='delete_user.php?id={$row['id']}'>Delete</a></li>";
         }
         echo "</ul>";
     } else {
